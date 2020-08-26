@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="scss/custom.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="js/script.js"></script>
+    <title>TwitterCustomeSearchTool</title>
+</head>
+
+<body>
+<nav class="navbar navbar-dark">
+    <a class="navbar-brand" href="#">
+        <i class="material-icons vertical-middle">search</i>
+        TwitterCustomSearchTool
+    </a>
+    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
+       data-show-count="false">Tweet</a>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</nav>
+<div class="container">
+    <h2>Keyword</h2>
+    <details class="search-kind" open>
+        <summary>
+            キーワード検索
+        </summary>
+        <div class="container">
+            <p>そのキーワードを含むツイートを検索</p>
+            <div id="input_keywordBox" class="keyword-box" id="input_keyword">
+                <div id="input_keyword">
+                    <input type="text" class="form-control" placeholder="keyword">
+                    <input type="button" value="＋" class="add pluralBtn">
+                    <input type="button" value="－" class="del pluralBtn">
+                </div>
+            </div>
+        </div>
+
+    </details>
+    <details class="search-kind">
+        <summary>
+            キーワード除外検索
+        </summary>
+        <div class="container">
+            <p>そのキーワードを含まないツイートを検索</p>
+            <div id="input_not_keywordBox" class="keyword-box">
+                <div id="input_not_keyword">
+                    <input type="text" class="form-control" placeholder="keyword">
+                    <input type="button" value="＋" class="add pluralBtn">
+                    <input type="button" value="－" class="del pluralBtn">
+                </div>
+            </div>
+        </div>
+
+    </details>
+    <details class="search-kind">
+        <summary>
+            ORキーワード検索
+        </summary>
+        <div class="container">
+            <p>そのキーワードのいずれかを含むツイートを検索</p>
+            <div id="input_not_keywordBox" class="keyword-box">
+                <div id="input_not_keyword">
+                    <input type="text" class="form-control" placeholder="keyword">
+                    <input type="button" value="＋" class="add pluralBtn">
+                    <input type="button" value="－" class="del pluralBtn">
+                </div>
+            </div>
+        </div>
+
+    </details>
+    <details class="search-kind">
+        <summary>
+            ハッシュタグ検索
+        </summary>
+        <div class="container">
+            <p>そのハッシュタグを含むツイートを検索</p>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">#</span>
+                </div>
+                <input type="text" class="form-control" placeholder="hashtag" aria-label="Username"
+                       aria-describedby="basic-addon1">
+            </div>
+        </div>
+
+    </details>
+    <h2>Username</h2>
+    <details class="search-kind">
+        <summary>
+            @検索
+        </summary>
+        <div class="container">
+            <p>そのユーザーについてのツイートを検索</p>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">@</span>
+                </div>
+                <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                       aria-describedby="basic-addon1">
+            </div>
+        </div>
+
+    </details>
+    <details class="search-kind">
+        <summary>
+            from検索
+        </summary>
+        <div class="container">
+            <p>誰からのツイートなのかを指定する</p>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">@</span>
+                </div>
+                <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                       aria-describedby="basic-addon1">
+            </div>
+        </div>
+
+    </details>
+    <details class="search-kind">
+        <summary>
+            to検索
+        </summary>
+        <div class="container">
+            <p>誰へのツイートなのかを指定する</p>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">@</span>
+                </div>
+                <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                       aria-describedby="basic-addon1">
+            </div>
+        </div>
+
+    </details>
+    <h2>Date</h2>
+    <details class="search-kind">
+        <summary>
+            since until検索
+        </summary>
+        <div class="container">
+            <p>その期間のツイートを検索</p>
+            <div class="form-group" id="datepicker-daterange">
+                <div class="col-sm-9 form-inline vertical-middle">
+                    <div class="input-daterange input-group" id="datepicker">
+                        <input type="text" class="input-sm form-control" name="start" placeholder="yyyymmdd"/>
+                        <span class="input-group-text" id="basic-addon1">〜</span>
+                        <input type="text" class="input-sm form-control" name="end" placeholder="yyyymmdd"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </details>
+    <h2>Engagement</h2>
+    <details class="search-kind">
+        <summary>
+            いいね数検索
+        </summary>
+        <div class="container">
+            <p>そのいいね数ののツイートを検索</p>
+            <div class="form-group" id="datepicker-daterange">
+                <div class="col-sm-9 form-inline vertical-middle">
+                    <div class="input-daterange input-group" id="datepicker">
+                        <input type="text" class="input-sm form-control" name="start" placeholder="min_faves"/>
+                        <span class="input-group-text" id="basic-addon1">〜</span>
+                        <input type="text" class="input-sm form-control" name="end" placeholder="max_faves"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </details>
+    <details class="search-kind">
+        <summary>
+            RT数検索
+        </summary>
+        <div class="container">
+            <p>そのRT数以上のツイートを検索</p>
+            <div class="form-group" id="datepicker-daterange">
+                <div class="col-sm-9 form-inline vertical-middle">
+                    <div class="input-daterange input-group" id="datepicker">
+                        <input type="text" class="input-sm form-control" name="start" placeholder="min_faves"/>
+                        <span class="input-group-text" id="basic-addon1">〜</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </details>
+    <details class="search-kind">
+        <summary>
+            返信数検索
+        </summary>
+        <div class="container">
+            <p>その返信数以上のツイートを検索</p>
+            <div class="form-group" id="datepicker-daterange">
+                <div class="col-sm-9 form-inline vertical-middle">
+                    <div class="input-daterange input-group" id="datepicker">
+                        <input type="text" class="input-sm form-control" name="start" placeholder="min_faves"/>
+                        <span class="input-group-text" id="basic-addon1">〜</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </details>
+    <h2>Filter</h2>
+    <details class="search-kind">
+        <summary>
+            リンクについて
+        </summary>
+        <div class="container">
+            <div class="form-group">
+                <div class="custom-control custom-radio">
+                    <input type="checkbox" class="custom-control-input" id="custom-radio-1" checked>
+                    <label class="custom-control-label" for="custom-radio-1">リンクを含むツイートを含める</label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type="checkbox" class="custom-control-input" id="custom-radio-2">
+                    <label class="custom-control-label" for="custom-radio-2">リンクを含むツイートのみ</label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type="checkbox" class="custom-control-input" id="custom-radio-3">
+                    <label class="custom-control-label" for="custom-radio-3">リンクを含むツイートを含めない</label>
+                </div>
+            </div>
+        </div>
+
+    </details>
+    <details class="search-kind">
+        <summary>
+            返信について
+        </summary>
+        <div class="container">
+            <div class="form-group">
+                <div class="custom-control custom-radio">
+                    <input type="checkbox" class="custom-control-input" id="custom-radio-1" checked>
+                    <label class="custom-control-label" for="custom-radio-1">返信と元のツイートをを含む</label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type="checkbox" class="custom-control-input" id="custom-radio-2">
+                    <label class="custom-control-label" for="custom-radio-2">返信のみ</label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type="checkbox" class="custom-control-input" id="custom-radio-3">
+                    <label class="custom-control-label" for="custom-radio-3">返信を含めない</label>
+                </div>
+            </div>
+        </div>
+
+    </details>
+
+    <div style="text-align: center;">
+        <button type="button" class="btn btn-primary search-btn" data_but="btn-xs" onclick="SearchButtonClick();">
+            <i class='fa fa-search'></i>
+            Search
+        </button>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small blue pt-4">
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+        <a href="https://twitter.com/nya3_neko2"> nya3neko2</a>
+    </div>
+</footer>
+<!-- Footer -->
+
+<!--ボタン増やすやつ-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).on("click", ".add", function () {
+        $(this).parent().clone(true).insertAfter($(this).parent());
+    });
+    $(document).on("click", ".del", function () {
+        var target = $(this).parent();
+        if (target.parent().children().length > 1) {
+            target.remove();
+        }
+    });
+</script>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</body>
+
+</html>

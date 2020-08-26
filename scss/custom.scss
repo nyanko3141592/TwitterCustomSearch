@@ -1,0 +1,65 @@
+$blue: #0097ec;
+$enable-rounded: true;
+//body{
+//  margin: 0px;
+//  padding: 0px;
+//}
+nav {
+  background: {
+    color: $blue
+  };
+}
+
+footer {
+  background: {
+    color: rgb(243, 247, 249);
+  };
+}
+
+summary {
+  font-size: large;
+}
+
+.head-image {
+  width: 80%;
+  height: 30%;
+}
+
+.vertical-middle {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.search-kind {
+  padding: 5px;
+}
+
+.search-btn {
+  border-radius: 50%;
+}
+
+.keyword-box {
+  margin: 10px 0;
+
+  input.form-control {
+    display: inline-block;
+    width: 75%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    color: #555;
+  }
+
+  input.pluralBtn {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ccc;
+    background: #fff;
+    border-radius: 5px;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+
+@import "../bootstrap/scss/bootstrap";
