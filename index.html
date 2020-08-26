@@ -8,14 +8,14 @@
     <link rel="stylesheet" href="scss/custom.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="js/script.js"></script>
-    <title>TwitterCustomeSearchTool</title>
+    <title>TwitterCustomeSearch</title>
 </head>
 
 <body>
 <nav class="navbar navbar-dark">
     <a class="navbar-brand" href="#">
         <i class="material-icons vertical-middle">search</i>
-        TwitterCustomSearchTool
+        TwitterCustomSearch
     </a>
     <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
        data-show-count="false">Tweet</a>
@@ -29,9 +29,10 @@
         </summary>
         <div class="container">
             <p>そのキーワードを含むツイートを検索</p>
-            <div id="input_keywordBox" class="keyword-box" id="input_keyword">
+            <div class="keyword-box">
                 <div id="input_keyword">
                     <input type="text" class="form-control" placeholder="keyword">
+                    <input type="button" value="×" class="clear pluralBtn">
                     <input type="button" value="＋" class="add pluralBtn">
                     <input type="button" value="－" class="del pluralBtn">
                 </div>
@@ -41,13 +42,14 @@
     </details>
     <details class="search-kind">
         <summary>
-            キーワード除外検索
+            除外キーワード検索
         </summary>
         <div class="container">
             <p>そのキーワードを含まないツイートを検索</p>
-            <div id="input_not_keywordBox" class="keyword-box">
+            <div class="keyword-box">
                 <div id="input_not_keyword">
                     <input type="text" class="form-control" placeholder="keyword">
+                    <input type="button" value="×" class="clear pluralBtn">
                     <input type="button" value="＋" class="add pluralBtn">
                     <input type="button" value="－" class="del pluralBtn">
                 </div>
@@ -62,8 +64,9 @@
         <div class="container">
             <p>そのキーワードのいずれかを含むツイートを検索</p>
             <div id="input_not_keywordBox" class="keyword-box">
-                <div id="input_not_keyword">
+                <div id="input_or_keyword">
                     <input type="text" class="form-control" placeholder="keyword">
+                    <input type="button" value="×" class="clear pluralBtn">
                     <input type="button" value="＋" class="add pluralBtn">
                     <input type="button" value="－" class="del pluralBtn">
                 </div>
@@ -82,7 +85,7 @@
                     <span class="input-group-text" id="basic-addon1">#</span>
                 </div>
                 <input type="text" class="form-control" placeholder="hashtag" aria-label="Username"
-                       aria-describedby="basic-addon1">
+                       aria-describedby="basic-addon1" id="hashtag">
             </div>
         </div>
 
@@ -99,7 +102,7 @@
                     <span class="input-group-text" id="basic-addon1">@</span>
                 </div>
                 <input type="text" class="form-control" placeholder="Username" aria-label="Username"
-                       aria-describedby="basic-addon1">
+                       aria-describedby="basic-addon1" id="at-username">
             </div>
         </div>
 
@@ -115,7 +118,7 @@
                     <span class="input-group-text" id="basic-addon1">@</span>
                 </div>
                 <input type="text" class="form-control" placeholder="Username" aria-label="Username"
-                       aria-describedby="basic-addon1">
+                       aria-describedby="basic-addon1" id="from-username">
             </div>
         </div>
 
@@ -131,7 +134,7 @@
                     <span class="input-group-text" id="basic-addon1">@</span>
                 </div>
                 <input type="text" class="form-control" placeholder="Username" aria-label="Username"
-                       aria-describedby="basic-addon1">
+                       aria-describedby="basic-addon1" id="to-username">
             </div>
         </div>
 
@@ -142,13 +145,15 @@
             since until検索
         </summary>
         <div class="container">
-            <p>その期間のツイートを検索</p>
-            <div class="form-group" id="datepicker-daterange">
+            <p>その期間のツイートを検索 (※他の絞り込み無しで期間を指定すると検索結果が何も出ません)</p>
+            <div class="form-group">
                 <div class="col-sm-9 form-inline vertical-middle">
-                    <div class="input-daterange input-group" id="datepicker">
-                        <input type="text" class="input-sm form-control" name="start" placeholder="yyyymmdd"/>
+                    <div class="input-daterange input-group">
+                        <input type="text" class="input-sm form-control" name="start" placeholder="yyyymmdd"
+                               id="since-date"/>
                         <span class="input-group-text" id="basic-addon1">〜</span>
-                        <input type="text" class="input-sm form-control" name="end" placeholder="yyyymmdd"/>
+                        <input type="text" class="input-sm form-control" name="end" placeholder="yyyymmdd"
+                               id="until-date"/>
                     </div>
                 </div>
             </div>
@@ -162,13 +167,11 @@
         </summary>
         <div class="container">
             <p>そのいいね数ののツイートを検索</p>
-            <div class="form-group" id="datepicker-daterange">
-                <div class="col-sm-9 form-inline vertical-middle">
-                    <div class="input-daterange input-group" id="datepicker">
-                        <input type="text" class="input-sm form-control" name="start" placeholder="min_faves"/>
-                        <span class="input-group-text" id="basic-addon1">〜</span>
-                        <input type="text" class="input-sm form-control" name="end" placeholder="max_faves"/>
-                    </div>
+            <div class="col-sm-9 form-inline vertical-middle">
+                <div class="input-daterange input-group" id="datepicker">
+                    <input type="text" class="input-sm form-control" name="start" placeholder="min_faves"
+                           id="min-faves"/>
+                    <span class="input-group-text" id="basic-addon1">〜</span>
                 </div>
             </div>
         </div>
@@ -180,12 +183,10 @@
         </summary>
         <div class="container">
             <p>そのRT数以上のツイートを検索</p>
-            <div class="form-group" id="datepicker-daterange">
-                <div class="col-sm-9 form-inline vertical-middle">
-                    <div class="input-daterange input-group" id="datepicker">
-                        <input type="text" class="input-sm form-control" name="start" placeholder="min_faves"/>
-                        <span class="input-group-text" id="basic-addon1">〜</span>
-                    </div>
+            <div class="col-sm-9 form-inline vertical-middle">
+                <div class="input-daterange input-group" id="datepicker">
+                    <input type="text" class="input-sm form-control" name="start" placeholder="min_RTs" id="min-rts"/>
+                    <span class="input-group-text" id="basic-addon1">〜</span>
                 </div>
             </div>
         </div>
@@ -200,7 +201,8 @@
             <div class="form-group" id="datepicker-daterange">
                 <div class="col-sm-9 form-inline vertical-middle">
                     <div class="input-daterange input-group" id="datepicker">
-                        <input type="text" class="input-sm form-control" name="start" placeholder="min_faves"/>
+                        <input type="text" class="input-sm form-control" name="start" placeholder="min_replies"
+                               id="min-reps"/>
                         <span class="input-group-text" id="basic-addon1">〜</span>
                     </div>
                 </div>
@@ -215,17 +217,17 @@
         </summary>
         <div class="container">
             <div class="form-group">
-                <div class="custom-control custom-radio">
-                    <input type="checkbox" class="custom-control-input" id="custom-radio-1" checked>
-                    <label class="custom-control-label" for="custom-radio-1">リンクを含むツイートを含める</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radio1" id="link-radio-1" checked>
+                    <label class="form-check-label" for="link-radio-1">リンクを含むツイートを含む</label>
                 </div>
-                <div class="custom-control custom-radio">
-                    <input type="checkbox" class="custom-control-input" id="custom-radio-2">
-                    <label class="custom-control-label" for="custom-radio-2">リンクを含むツイートのみ</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radio1" id="link-radio-2">
+                    <label class="form-check-label" for="link-radio-2">リンクを含むツイートのみ</label>
                 </div>
-                <div class="custom-control custom-radio">
-                    <input type="checkbox" class="custom-control-input" id="custom-radio-3">
-                    <label class="custom-control-label" for="custom-radio-3">リンクを含むツイートを含めない</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radio1" id="link-radio-3">
+                    <label class="form-check-label" for="link-radio-3">リンクを含むツイートをを含めない</label>
                 </div>
             </div>
         </div>
@@ -237,17 +239,17 @@
         </summary>
         <div class="container">
             <div class="form-group">
-                <div class="custom-control custom-radio">
-                    <input type="checkbox" class="custom-control-input" id="custom-radio-1" checked>
-                    <label class="custom-control-label" for="custom-radio-1">返信と元のツイートをを含む</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radio2" id="rep-radio-1" checked>
+                    <label class="form-check-label" for="rep-radio-1">返信と元のツイートをを含む</label>
                 </div>
-                <div class="custom-control custom-radio">
-                    <input type="checkbox" class="custom-control-input" id="custom-radio-2">
-                    <label class="custom-control-label" for="custom-radio-2">返信のみ</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radio2" id="rep-radio-2">
+                    <label class="form-check-label" for="rep-radio-2">返信のみ</label>
                 </div>
-                <div class="custom-control custom-radio">
-                    <input type="checkbox" class="custom-control-input" id="custom-radio-3">
-                    <label class="custom-control-label" for="custom-radio-3">返信を含めない</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radio2" id="rep-radio-3">
+                    <label class="form-check-label" for="rep-radio-3">返信を含めない</label>
                 </div>
             </div>
         </div>
@@ -274,13 +276,19 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).on("click", ".add", function () {
-        $(this).parent().clone(true).insertAfter($(this).parent());
+        console.log($(this).parent().attr('id'));
+        $(`<div id="${$(this).parent().attr('id')}"> <input type="text" class="form-control" placeholder="keyword"> <input type="button" value="×" class="clear pluralBtn"> <input type="button" value="＋" class="add pluralBtn"> <input type="button" value="－" class="del pluralBtn"> </div>`).insertAfter($(this).parent());
     });
     $(document).on("click", ".del", function () {
         var target = $(this).parent();
         if (target.parent().children().length > 1) {
             target.remove();
         }
+    });
+    $(document).on("click", ".clear", function () {
+        var target = $(this).parent().find(".form-control").val('');
+        ;
+        console.log(target);
     });
 </script>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
