@@ -24,7 +24,11 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-154235401-2"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', 'UA-154235401-2');
@@ -91,6 +95,12 @@
                     <input type="button" value="＋" class="add pluralBtn">
                     <input type="button" value="－" class="del pluralBtn">
                 </div>
+                <div id="input_or_keyword">
+                    <input type="text" class="form-control" placeholder="keyword">
+                    <input type="button" value="×" class="clear pluralBtn">
+                    <input type="button" value="＋" class="add pluralBtn">
+                    <input type="button" value="－" class="del pluralBtn">
+                </div>
             </div>
         </div>
 
@@ -103,7 +113,7 @@
             <p>そのハッシュタグを含むツイートを検索</p>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">#</span>
+                    <span class="input-group-text">#</span>
                 </div>
                 <input type="text" class="form-control" placeholder="hashtag" aria-label="Username"
                        aria-describedby="basic-addon1" id="hashtag">
@@ -120,7 +130,7 @@
             <p>そのユーザーについてのツイートを検索</p>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">@</span>
+                    <span class="input-group-text">@</span>
                 </div>
                 <input type="text" class="form-control" placeholder="Username" aria-label="Username"
                        aria-describedby="basic-addon1" id="at-username">
@@ -136,7 +146,7 @@
             <p>誰からのツイートなのかを指定する</p>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">@</span>
+                    <span class="input-group-text">@</span>
                 </div>
                 <input type="text" class="form-control" placeholder="Username" aria-label="Username"
                        aria-describedby="basic-addon1" id="from-username">
@@ -152,7 +162,7 @@
             <p>誰へのツイートなのかを指定する</p>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">@</span>
+                    <span class="input-group-text">@</span>
                 </div>
                 <input type="text" class="form-control" placeholder="Username" aria-label="Username"
                        aria-describedby="basic-addon1" id="to-username">
@@ -172,7 +182,7 @@
                     <div class="input-daterange input-group">
                         <input type="text" class="input-sm form-control" name="start" placeholder="yyyymmdd"
                                id="since-date"/>
-                        <span class="input-group-text" id="basic-addon1">〜</span>
+                        <span class="input-group-text">〜</span>
                         <input type="text" class="input-sm form-control" name="end" placeholder="yyyymmdd"
                                id="until-date"/>
                     </div>
@@ -189,10 +199,10 @@
         <div class="container">
             <p>そのいいね数ののツイートを検索</p>
             <div class="col-sm-9 form-inline vertical-middle">
-                <div class="input-daterange input-group" id="datepicker">
+                <div class="input-daterange input-group">
                     <input type="text" class="input-sm form-control" name="start" placeholder="min_faves"
                            id="min-faves"/>
-                    <span class="input-group-text" id="basic-addon1">〜</span>
+                    <span class="input-group-text">〜</span>
                 </div>
             </div>
         </div>
@@ -205,9 +215,9 @@
         <div class="container">
             <p>そのRT数以上のツイートを検索</p>
             <div class="col-sm-9 form-inline vertical-middle">
-                <div class="input-daterange input-group" id="datepicker">
+                <div class="input-daterange input-group">
                     <input type="text" class="input-sm form-control" name="start" placeholder="min_RTs" id="min-rts"/>
-                    <span class="input-group-text" id="basic-addon1">〜</span>
+                    <span class="input-group-text">〜</span>
                 </div>
             </div>
         </div>
@@ -221,10 +231,10 @@
             <p>その返信数以上のツイートを検索</p>
             <div class="form-group" id="datepicker-daterange">
                 <div class="col-sm-9 form-inline vertical-middle">
-                    <div class="input-daterange input-group" id="datepicker">
+                    <div class="input-daterange input-group">
                         <input type="text" class="input-sm form-control" name="start" placeholder="min_replies"
                                id="min-reps"/>
-                        <span class="input-group-text" id="basic-addon1">〜</span>
+                        <span class="input-group-text">〜</span>
                     </div>
                 </div>
             </div>
@@ -276,6 +286,20 @@
         </div>
 
     </details>
+    <details class="search-kind" open>
+        <summary>
+            FF検索
+        </summary>
+        <div class="container">
+            <p>検索範囲をFF内にする</p>
+            <label class="switch">
+                <input type="checkbox" id="ff-check">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+    </details>
+
 
     <div style="text-align: center;">
         <button type="button" class="btn btn-primary search-btn" data_but="btn-xs" onclick="SearchButtonClick();">
@@ -283,6 +307,57 @@
             Search
         </button>
     </div>
+    <!--    検索履歴　　-->
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">link</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td><a href="" id="link0">NO LINK</a></td>
+        </tr>
+        <tr>
+            <th scope="row" >2</th>
+            <td><a href="" id="link1">NO LINK</a></td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td><a href="" id="link2">NO LINK</a></td>
+        </tr>
+        <tr>
+            <th scope="row">4</th>
+            <td><a href="" id="link3">NO LINK</a></td>
+        </tr>
+        <tr>
+            <th scope="row" >5</th>
+            <td><a href="" id="link4">NO LINK</a></td>
+        </tr>
+        <tr>
+            <th scope="row">6</th>
+            <td><a href="" id="link5">NO LINK</a></td>
+        </tr>
+        <tr>
+            <th scope="row">7</th>
+            <td><a href="" id="link6">NO LINK</a></td>
+        </tr>
+        <tr>
+            <th scope="row" >8</th>
+            <td><a href="" id="link7">NO LINK</a></td>
+        </tr>
+        <tr>
+            <th scope="row">9</th>
+            <td><a href="" id="link8">NO LINK</a></td>
+        </tr>
+        <tr>
+            <th scope="row">10</th>
+            <td><a href="" id="link9">NO LINK</a></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 
 <!-- Footer -->
