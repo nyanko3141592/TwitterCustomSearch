@@ -37,7 +37,7 @@ function SearchButtonClick() {
     $(function () {
         let keyword;
         let keyword_len = $('#input_keyword input').length / 4;
-        let arr = new Array(14).fill(false);
+        let arr = new Array(15).fill(false);
         let num = -1;
         num += 1;
         // keyword
@@ -156,6 +156,12 @@ function SearchButtonClick() {
         }
         console.log(search_link);
         num += 1;
+        if (document.getElementById("ff-check").checked) {
+            search_link += "&pf=on";
+            arr[num] = true;
+        }
+        console.log(search_link);
+        num += 1;
         if (document.getElementById("rep-radio-2").checked) {
             search_link += "filter%3Areplies%20";
             arr[num] = true;
@@ -165,8 +171,14 @@ function SearchButtonClick() {
         }
         console.log(search_link);
         num += 1;
-        if (document.getElementById("ff-check").checked) {
-            search_link += "&pf=on";
+        if (document.getElementById("show-radio-2").checked) {
+            search_link += "&f=live";
+            arr[num] = true;
+        } else if (document.getElementById("show-radio-3").checked) {
+            search_link += "&f=image";
+            arr[num] = true;
+        }else if (document.getElementById("show-radio-4").checked) {
+            search_link += "&f=video";
             arr[num] = true;
         }
         console.log(arr);
