@@ -193,7 +193,7 @@ function SearchButtonClick() {
             arr.indexOf(true);
             alert('検索要素が足りません');
         } else {
-            window.open(search_link, '_blank');
+            window.open(search_link, 'search_result', `width=600, height=${window.outerHeight }, location=1, resizable=1, toolbar=0`);
             addLink(search_link);
             console.log(search_link);
         }
