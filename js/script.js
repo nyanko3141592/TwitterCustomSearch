@@ -14,6 +14,9 @@ window.onload = function () {
       target.href = "";
     }
   }
+
+  console.log("get infos");
+  getInputs();
 };
 
 function addLink(url) {
@@ -208,4 +211,21 @@ function SearchButtonClick() {
     addLink(search_link);
     console.log(search_link);
   }
+}
+
+function getInputs() {
+  // keyword
+  let needKeywordsArr = [];
+  let i = 1;
+  while(true){
+    keyword = document.querySelector(
+      `#input_keyword:nth-child(${i}) > input.form-control`
+    ).value;
+    if(keyword === ""){
+        break;
+    }
+    needKeywordsArr.push(keyword);
+    i++;
+  }
+  console.log(needKeywordsArr);
 }
