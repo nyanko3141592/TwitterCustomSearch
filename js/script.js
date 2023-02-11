@@ -14,6 +14,9 @@ window.onload = function () {
       target.href = "";
     }
   }
+
+  console.log("get infos");
+  getInputs();
 };
 
 function addLink(url) {
@@ -204,8 +207,27 @@ function SearchButtonClick() {
     arr.indexOf(true);
     alert("検索要素が足りません");
   } else {
-    window.open(search_link, "search_result");
+    // window.open(search_link, "search_result");
     addLink(search_link);
     console.log(search_link);
   }
+
+  getInputs();
+}
+
+function getInputs() {
+  // keyword
+  let needKeywordsArr = [];
+  let i = 1;
+  while(true){
+    keyword = document.querySelector(
+      `#input_keyword:nth-child(${i}) > input.form-control`
+    ).value;
+    if(keyword === ""){
+        break;
+    }
+    needKeywordsArr.push(keyword);
+    i++;
+  }
+  console.log(needKeywordsArr);
 }

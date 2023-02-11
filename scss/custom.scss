@@ -1,9 +1,6 @@
-$blue: #0097ec;
+$blue: #350d36;
 $enable-rounded: true;
-//body{
-//  margin: 0px;
-//  padding: 0px;
-//}
+
 nav {
   background: {
     color: $blue
@@ -130,4 +127,4 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-@import "../bootstrap/scss/bootstrap";
+@import "/Users/takah/node_modules/bootstrap/scss/bootstrap";
