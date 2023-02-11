@@ -207,10 +207,12 @@ function SearchButtonClick() {
     arr.indexOf(true);
     alert("検索要素が足りません");
   } else {
-    window.open(search_link, "search_result");
+    // window.open(search_link, "search_result");
     addLink(search_link);
     console.log(search_link);
   }
+
+  getInputs();
 }
 
 function getInputs() {
